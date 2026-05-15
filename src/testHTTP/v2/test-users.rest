@@ -1,0 +1,25 @@
+# SOC = separetion of concerns
+### Read all users
+GET http://localhost:3050/api/v2/users
+
+### Create test a new user
+
+POST http://localhost:3050/api/v2/users
+Content-Type: application/json
+
+{
+    "username":"Susan",
+    "email": "susan3@example.com",
+    "password": "456789123"
+}
+
+### Update a user
+
+PUT http://localhost:3050/api/v2/users/1
+Content-Type: application/json
+
+{
+    "username":"Johnny English",
+    "email": "johnny@example.com",
+    "password": "555555555"
+}

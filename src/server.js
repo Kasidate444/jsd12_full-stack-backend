@@ -3,7 +3,7 @@ import cors from "cors";
 
 import { users } from "./fakeData/fakeUsers.js";
 import { router as apiRoutes } from "./routes/index.js";
-import { connect } from "mongoose";
+import { connectDB } from "./config/mongodb.js";
 
 const app = express();
 
