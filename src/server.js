@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 
 import { users } from "./fakeData/fakeUsers.js";
-import { router as apiRoutes } from "./routes/v1/index.js";
+import { router as apiRoutes } from "./routes/index.js";
+import { connect } from "mongoose";
 
 const app = express();
 
@@ -46,6 +47,8 @@ app.get("/", (req, res) => {
 app.use("/api", apiRoutes);
 
 const PORT = 3050;
+
+await connectDB();
 
 app.listen(PORT, () => {
   console.log(`Server running on PORT: ${PORT} 🟢`);
