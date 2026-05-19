@@ -8,8 +8,8 @@ POST http://localhost:3050/api/v2/users
 Content-Type: application/json
 
 {
-    "username":"Susan",
-    "email": "susan3@example.com",
+    "username":"Chris",
+    "email": "chris@example.com",
     "password": "456789123"
 }
 
@@ -23,3 +23,6 @@ Content-Type: application/json
     "email": "johnny@example.com",
     "password": "555555555"
 }
+
+### Delete a user
+DELETE http://localhost:3050/api/v2/users/1
