@@ -21,7 +21,8 @@ export const cerateUser = async (req, res, next) => {
     const err = new Error("username, email, and password are required");
     err.name = "ValidationError";
     err.status = 400;
-    return res.status(400).json({ sucess: false, error: err });
+    // return res.status(400).json({ sucess: false, error: err });
+    next(err);
   }
 
   try {
