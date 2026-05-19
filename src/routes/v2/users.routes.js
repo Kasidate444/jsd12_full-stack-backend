@@ -6,9 +6,13 @@ import {
   getUsers,
   cerateUser,
   updateUser,
-} from "../../modules/users/users.controller.js";
+  deleteUser,
+} from "../../modules/users/users.v2.controller.js";
+import { deleteModel } from "mongoose";
 
 export const router = Router();
+
+// MongoDB route (/api/v2/users)
 
 router.get("/", getUsers);
 
@@ -16,7 +20,7 @@ router.post("/", cerateUser);
 
 router.put("/:id", updateUser);
 
-// router.delete("/:id",async (req,res)=>{});
+router.delete("/:id", deleteUser);
 
 // Supabase / PostgreSQL route
 

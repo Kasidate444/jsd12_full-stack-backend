@@ -15,14 +15,14 @@ Content-Type: application/json
 
 ### Update a user
 
-PUT http://localhost:3050/api/v2/users/1
+PUT http://localhost:3050/api/v2/users/6a0be230af5da4776a1d41a1
 Content-Type: application/json
 
 {
-    "username":"Johnny English",
-    "email": "johnny@example.com",
+    "username":"Christopher",
+    "email": "chris.j@example.com",
     "password": "555555555"
 }
 
 ### Delete a user
-DELETE http://localhost:3050/api/v2/users/1
+DELETE http://localhost:3050/api/v2/users/6a06cdcc4e5c5c51d2e49087
