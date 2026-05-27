@@ -6,12 +6,12 @@ import { users } from "./fakeData/fakeUsers.js";
 import { router as apiRoutes } from "./routes/index.js";
 import { connectDB } from "./config/mongodb.js";
 import { connectSupabase } from "./config/supabase.js";
-import helment from "helmet";
-import { limiter } from "./middlewares/rateLimeter.js";
+import helmet from "helmet";
+import { limiter } from "./middlewares/rateLimiter.js";
 
 const app = express();
 
-app.use(helment());
+app.use(helmet());
 
 const corsOptions = {
   origin: [
