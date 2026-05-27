@@ -1,5 +1,5 @@
 # Read all users
-GET http://localhost:3050/users
+GET http://localhost:3050/api/v1/users
 
 ### Create test a new user
 
