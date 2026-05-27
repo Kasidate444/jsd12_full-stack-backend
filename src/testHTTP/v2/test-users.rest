@@ -8,8 +8,17 @@ POST http://localhost:3050/api/v2/users
 Content-Type: application/json
 
 {
-    "username":"Chris",
-    "email": "chris@example.com",
+    "username":"Chris6",
+    "email": "chris6@example.com",
+    "password": "456789123"
+}
+
+### Login check
+POST http://localhost:3050/api/v2/users/login
+Content-Type: application/json
+
+{
+    "email": "johnny@example.com",
     "password": "456789123"
 }
 

@@ -1,4 +1,5 @@
 import { Router } from "express";
+// import jwt
 // import { users } from "../../fakeData/fakeUsers.js";
 import { User } from "../../modules/users/user.model.js";
 import { supabase } from "../../config/supabase.js";
@@ -7,20 +8,71 @@ import {
   cerateUser,
   updateUser,
   deleteUser,
+  createUserHash,
+  userLogin,
 } from "../../modules/users/users.v2.controller.js";
 import { deleteModel } from "mongoose";
+import { authUser } from "../../middlewares/auth.js";
 
 export const router = Router();
 
 // MongoDB route (/api/v2/users)
 
+// Read all users
 router.get("/", getUsers);
 
-router.post("/", cerateUser);
+// Create a user by bcrypt hash
+router.post("/", createUserHash);
+
+// Login a user
+router.post("/login", userLogin);
 
 router.put("/:id", updateUser);
 
 router.delete("/:id", deleteUser);
+
+// Check user session/token
+router.get("/auth/me", authUser, async (req, res, next) => {
+  try {
+    const userId = req.user.user._id;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User not found!",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Logout a user
+router.post("/auth/logout", (req, res) => {
+  const isProd = process.env.NODE_ENV === "production";
+
+  res.clearCookie("accessToken", {
+    httpOnly: true,
+    secure: isProd, // only send over HTTPS in production
+    sameSite: isProd ? "none" : "lax",
+    path: "/",
+  });
+  return res.status(200).json({
+    success: true,
+    message: "Logged out seccessfully!",
+  });
+});
 
 // Supabase / PostgreSQL route
 
